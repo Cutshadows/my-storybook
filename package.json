@@ -1,7 +1,29 @@
 {
   "name": "my-storybook",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "license": "MIT",
+  "typings": "dis/index.d.ts",
+  "main": "dist/index.js",
+  "homepage": "https://dbarraza.com",
+  "repository": {
+    "url": "https://github.com/Cutshadows/my-storybook",
+    "type": "git"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "typescript": ">=4.0.0"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -10,17 +32,16 @@
     "@types/node": "^16.11.58",
     "@types/react": "^18.0.19",
     "@types/react-dom": "^18.0.6",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "typescript": "^4.8.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "bun run storybook",
+    "build": "yarn clean && tsc && yarn copy-files",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "clean": "rimraf dist/",
+    "copy-files": "copyfiles -u 1 src/**/*.css dist/"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +60,31 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.19.0",
+    "@storybook/addon-actions": "^6.5.11",
+    "@storybook/addon-essentials": "^6.5.11",
+    "@storybook/addon-interactions": "^6.5.11",
+    "@storybook/addon-links": "^6.5.11",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/builder-webpack4": "^6.5.11",
+    "@storybook/manager-webpack4": "^6.5.11",
+    "@storybook/react": "^6.5.11",
+    "@storybook/testing-library": "^0.0.13",
+    "babel-loader": "^8.2.5",
+    "copyfiles": "^2.4.1",
+    "css-loader": "^6.7.1",
+    "postcss": "^8.4.16",
+    "rimraf": "^3.0.2",
+    "semantic-release": "^19.0.5"
+  },
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/github",
+    "@semantic-release/npm",
+    "@semantic-release/git"
+]
 }
