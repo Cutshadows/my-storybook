@@ -27,7 +27,7 @@ jobs:
           node-version: 14.17
 
       - name: Install Dependencies
-        run: yarn install
+        run: yarn
 
       - name: Build Project
         run: yarn build
